@@ -230,7 +230,7 @@ function Splash() {
       )}
 
       <Link
-        to="/YXV0aA"
+        to="/aG9tZQ"
         className="splash-gap-xs flex min-h-12 w-full max-w-sm items-center justify-center gap-2 rounded-2xl border border-border/60 bg-background/40 px-6 text-sm font-black text-foreground backdrop-blur"
       >
         تسجيل الدخول الآن
