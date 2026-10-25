@@ -147,7 +147,7 @@ self.addEventListener("fetch", (event) => {
       } catch (_) {
         const c = await caches.open(OFFLINE_CACHE);
         return (await c.match(req, { ignoreSearch: true })) || (await c.match("/")) ||
-          new Response("<meta charset=utf-8><body dir=rtl style='background:#0b0f19;color:#e2e8f0;font-family:sans-serif;text-align:center;padding-top:30vh'>لا يوجد اتصال بالإنترنت. أعد المحاولة عند عودة الاتصال.", { headers: { "content-type": "text/html; charset=utf-8" } });
+          new Response("<meta charset=utf-8><body dir=rtl style='background:#0d1117;color:#e2e8f0;font-family:sans-serif;text-align:center;padding-top:30vh'>لا يوجد اتصال بالإنترنت. أعد المحاولة عند عودة الاتصال.", { headers: { "content-type": "text/html; charset=utf-8" } });
       }
     })());
     return;

@@ -20,7 +20,7 @@
 
 @theme inline {
   --font-sans: "IBM Plex Sans Arabic", "Cairo", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "IBM Plex Sans Arabic", "Cairo", ui-sans-serif, sans-serif;
+  --font-display: "Cairo", "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
@@ -73,25 +73,25 @@
 
 :root {
   --radius: 1rem;
-  /* هوية شام كاش: خلفية كحلية عميقة، أخضر زمردي (شعار)، أزرق ملكي (زر)، لمسة بنفسجية للتدرج */
-  --background: #0b0f19;
+  /* هوية shamcash.org: خلفية كحلية فحمية، أخضر نابض، لوحات داكنة بحدود خفيفة */
+  --background: #0d1117;
   --foreground: #f8fafc;
-  --card: #161b22;
+  --card: #161d27;
   --card-foreground: #f8fafc;
-  --popover: #161b22;
+  --popover: #161d27;
   --popover-foreground: #f8fafc;
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
   --primary-glow: #60a5fa;
-  --brand-deep: #0b0f19;
-  --brand-soft: #1c2330;
-  --secondary: #1c2330;
+  --brand-deep: #0d1117;
+  --brand-soft: #1a2230;
+  --secondary: #1a2230;
   --secondary-foreground: #f8fafc;
-  --muted: #1c2330;
+  --muted: #1a2230;
   --muted-foreground: #cbd5e1;
-  --accent: #34d399;
+  --accent: #4ade80;
   --accent-foreground: #04140d;
-  --success: #34d399;
+  --success: #4ade80;
   --success-foreground: #04140d;
   --warning: #fbbf24;
   --warning-foreground: #1f1300;
@@ -99,9 +99,9 @@
   --info-foreground: #04122a;
   --destructive: #f87171;
   --destructive-foreground: #1a0607;
-  --border: #3a4556;
-  --input: #3a4556;
-  --ring: #34d399;
+  --border: #2b3442;
+  --input: #2b3442;
+  --ring: #4ade80;
   --shadow-card: 0 1px 2px oklch(0.04 0.02 262 / 0.5), 0 12px 30px -14px oklch(0.04 0.02 262 / 0.8);
   --shadow-lift: 0 2px 6px oklch(0.04 0.02 262 / 0.55), 0 28px 55px -22px oklch(0.04 0.02 262 / 0.95);
   --shadow-glow: 0 18px 40px -14px oklch(0.6 0.17 262 / 0.55);
@@ -124,23 +124,23 @@
 
 
 .dark {
-  --background: #0b0f19;
+  --background: #0d1117;
   --foreground: #f8fafc;
-  --card: #161b22;
+  --card: #161d27;
   --card-foreground: #f8fafc;
-  --popover: #161b22;
+  --popover: #161d27;
   --popover-foreground: #f8fafc;
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
-  --brand-deep: #0b0f19;
-  --brand-soft: #1c2330;
-  --secondary: #1c2330;
+  --brand-deep: #0d1117;
+  --brand-soft: #1a2230;
+  --secondary: #1a2230;
   --secondary-foreground: #f8fafc;
-  --muted: #1c2330;
+  --muted: #1a2230;
   --muted-foreground: #cbd5e1;
-  --accent: #34d399;
+  --accent: #4ade80;
   --accent-foreground: #04140d;
-  --success: #34d399;
+  --success: #4ade80;
   --success-foreground: #04140d;
   --warning: #fbbf24;
   --warning-foreground: #1f1300;
@@ -148,9 +148,9 @@
   --info-foreground: #04122a;
   --destructive: #f87171;
   --destructive-foreground: #1a0607;
-  --border: #3a4556;
-  --input: #3a4556;
-  --ring: #34d399;
+  --border: #2b3442;
+  --input: #2b3442;
+  --ring: #4ade80;
   --chart-1: oklch(0.74 0.15 168);
   --chart-2: oklch(0.6 0.17 262);
   --chart-3: oklch(0.52 0.19 285);
