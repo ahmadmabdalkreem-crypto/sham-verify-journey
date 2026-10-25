@@ -1,0 +1,15 @@
+- [x] اختبار تباين آلي (WCAG) لصفحات العميل في الوضعين — tests/contrast/check_contrast.py
+- [x] تعزيز حدود الحقول (0.55) وخانات رمز التحقق ورقم الخطوة النشطة في الوضعين
+
+- [x] iPhone compatibility: small screens, tap targets, Safari status bar
+- [x] Visual tests: iPhone sizes x portrait/landscape, no overlap/horizontal scroll
+- [x] Safari keyboard: keep focused fields/buttons visible
+- [x] Replace home with launch splash (web login for iPhone/Android)
+- [x] Remove customer data page; visitors go straight to login
+- [ ] Restyle login page like app screenshot, keep interactive background
+- [ ] Tune background interaction for small screens/touch without hurting login clarity
+- [ ] Responsive contrast layer behind login form
+- [ ] BUG: visiting /YXV0aA bounces to home
+- [ ] Login layout on small phones: no horizontal scroll, button reachable
+- [ ] General UX improvements (scope TBD with user)
+- [ ] Apply exact colors from the uploaded login screenshot
