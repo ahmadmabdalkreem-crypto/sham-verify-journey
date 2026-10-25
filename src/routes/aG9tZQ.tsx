@@ -152,20 +152,20 @@ function HomePage() {
       <section className="relative overflow-hidden">
         <div className="splash-glow" aria-hidden />
         <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 pb-20 pt-16 text-center sm:pt-24">
-          <span className="text-sm font-black text-accent" data-reveal>شام كاش</span>
-          <h1 className="mt-3 text-balance text-[clamp(2rem,7vw,3.4rem)] font-black leading-[1.15] text-foreground" data-reveal>
+          <span className="text-sm font-black text-accent" data-reveal="">شام كاش</span>
+          <h1 className="mt-3 text-balance text-[clamp(2rem,7vw,3.4rem)] font-black leading-[1.15] text-foreground" data-reveal="">
             تطبيق{" "}
             <span className="bg-gradient-to-l from-accent to-primary bg-clip-text text-transparent">شام كاش</span>{" "}
             متوفر الآن
           </h1>
-          <p className="mt-5 max-w-[52ch] text-balance text-[15px] leading-8 text-muted-foreground sm:text-base" data-reveal>
+          <p className="mt-5 max-w-[52ch] text-balance text-[15px] leading-8 text-muted-foreground sm:text-base" data-reveal="">
             نسعى لتوفير منصة موثوقة وآمنة تتيح للمستخدمين إجراء المعاملات المالية بسهولة ومرونة. هدفنا هو تمكين
             الأفراد من إدارة شؤونهم المالية بكفاءة وشفافية.
           </p>
-          <p className="mt-6 text-sm font-semibold text-muted-foreground" data-reveal>حمّل التطبيق واستمتع بخدماتنا</p>
+          <p className="mt-6 text-sm font-semibold text-muted-foreground" data-reveal="">حمّل التطبيق واستمتع بخدماتنا</p>
           <Link
             to="/YXV0aA"
-            data-reveal
+            data-reveal=""
             className="btn-shine mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary/70 px-10 text-base font-black text-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/10 hover:shadow-[0_10px_30px_-10px_var(--primary)]"
           >
             تسجيل الدخول
@@ -176,7 +176,7 @@ function HomePage() {
 
       {/* حول */}
       <section className="mx-auto w-full max-w-3xl px-4 pb-16">
-        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal>
+        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">حول</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
           <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
@@ -195,7 +195,7 @@ function HomePage() {
           {WHY.map((item) => (
             <article
               key={item.title}
-              data-reveal
+              data-reveal=""
               className="rounded-3xl border border-border/60 bg-card p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_40px_-18px_var(--accent)]"
             >
               <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-accent/15 text-accent">
@@ -220,7 +220,7 @@ function HomePage() {
           {FEATURES.map((item) => (
             <article
               key={item.title}
-              data-reveal
+              data-reveal=""
               className="rounded-3xl border border-border/60 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
             >
               <span className="flex size-11 items-center justify-center rounded-2xl bg-accent/15 text-accent">
@@ -235,7 +235,7 @@ function HomePage() {
 
       {/* الخدمات / دعوة أخيرة */}
       <section id="services" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-16">
-        <div className="rounded-3xl border border-primary/40 bg-card p-8 text-center sm:p-10" data-reveal>
+        <div className="rounded-3xl border border-primary/40 bg-card p-8 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">جاهز للبدء؟</h2>
           <p className="mt-4 text-[15px] leading-8 text-muted-foreground">
             سجّل دخولك الآن واستمتع بكل خدمات شام كاش مباشرة من المتصفح — بدون متجر تطبيقات.
@@ -252,7 +252,7 @@ function HomePage() {
 
       {/* تواصل معنا */}
       <section id="contact" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-20">
-        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal>
+        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">تواصل معنا</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
           <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
