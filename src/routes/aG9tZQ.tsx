@@ -132,7 +132,7 @@ function HomePage() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                  className="flex min-h-11 items-center rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 >
                   {item.label}
                 </a>
@@ -151,7 +151,7 @@ function HomePage() {
       {/* البطل */}
       <section className="relative overflow-hidden">
         <div className="splash-glow" aria-hidden />
-        <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 pb-20 pt-16 text-center sm:pt-24">
+        <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 pb-14 pt-10 text-center sm:pb-20 sm:pt-24">
           <span className="text-sm font-black text-accent" data-reveal="">شام كاش</span>
           <h1 className="mt-3 text-balance text-[clamp(2rem,7vw,3.4rem)] font-black leading-[1.15] text-foreground" data-reveal="">
             تطبيق{" "}
@@ -166,7 +166,7 @@ function HomePage() {
           <Link
             to="/YXV0aA"
             data-reveal=""
-            className="btn-shine mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary/70 px-10 text-base font-black text-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/10 hover:shadow-[0_10px_30px_-10px_var(--primary)]"
+            className="btn-shine mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-primary/70 px-10 text-base font-black text-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/10 hover:shadow-[0_10px_30px_-10px_var(--primary)] sm:w-auto"
           >
             تسجيل الدخول
             <ArrowLeft className="size-4 shrink-0" aria-hidden />
@@ -175,8 +175,8 @@ function HomePage() {
       </section>
 
       {/* حول */}
-      <section className="mx-auto w-full max-w-3xl px-4 pb-16">
-        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal="">
+      <section className="mx-auto w-full max-w-3xl px-4 pb-12 sm:pb-16">
+        <div className="rounded-3xl border border-border/60 bg-card p-6 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">حول</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
           <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
@@ -188,7 +188,7 @@ function HomePage() {
       </section>
 
       {/* لماذا شام كاش */}
-      <section className="mx-auto w-full max-w-5xl px-4 pb-16">
+      <section className="mx-auto w-full max-w-5xl px-4 pb-12 sm:pb-16">
         <h2 className="text-center text-2xl font-black text-foreground">لماذا شام كاش</h2>
         <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -196,7 +196,7 @@ function HomePage() {
             <article
               key={item.title}
               data-reveal=""
-              className="rounded-3xl border border-border/60 bg-card p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_40px_-18px_var(--accent)]"
+              className="rounded-3xl border border-border/60 bg-card p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_40px_-18px_var(--accent)] sm:p-6"
             >
               <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-accent/15 text-accent">
                 <item.icon className="size-6" aria-hidden />
@@ -209,7 +209,7 @@ function HomePage() {
       </section>
 
       {/* المزايا */}
-      <section id="features" className="mx-auto w-full max-w-5xl scroll-mt-20 px-4 pb-16">
+      <section id="features" className="mx-auto w-full max-w-5xl scroll-mt-20 px-4 pb-12 sm:pb-16">
         <h2 className="text-center text-2xl font-black text-foreground">المزايا</h2>
         <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
         <p className="mx-auto mt-5 max-w-[60ch] text-center text-[15px] leading-8 text-muted-foreground">
@@ -221,28 +221,30 @@ function HomePage() {
             <article
               key={item.title}
               data-reveal=""
-              className="rounded-3xl border border-border/60 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
+              className="flex items-start gap-4 rounded-3xl border border-border/60 bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 sm:block sm:p-6"
             >
-              <span className="flex size-11 items-center justify-center rounded-2xl bg-accent/15 text-accent">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent/15 text-accent">
                 <item.icon className="size-5" aria-hidden />
               </span>
-              <h3 className="mt-4 text-base font-black text-foreground">{item.title}</h3>
-              <p className="mt-2 text-[14px] leading-7 text-muted-foreground">{item.text}</p>
+              <div className="min-w-0">
+                <h3 className="text-base font-black text-foreground sm:mt-4">{item.title}</h3>
+                <p className="mt-1.5 text-[14px] leading-7 text-muted-foreground sm:mt-2">{item.text}</p>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
       {/* الخدمات / دعوة أخيرة */}
-      <section id="services" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-16">
-        <div className="rounded-3xl border border-primary/40 bg-card p-8 text-center sm:p-10" data-reveal="">
+      <section id="services" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-12 sm:pb-16">
+        <div className="rounded-3xl border border-primary/40 bg-card p-6 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">جاهز للبدء؟</h2>
           <p className="mt-4 text-[15px] leading-8 text-muted-foreground">
             سجّل دخولك الآن واستمتع بكل خدمات شام كاش مباشرة من المتصفح — بدون متجر تطبيقات.
           </p>
           <Link
             to="/YXV0aA"
-            className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-10 text-base font-black text-primary-foreground transition-opacity hover:opacity-90"
+            className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-10 text-base font-black text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto"
           >
             تسجيل الدخول الآن
             <ArrowLeft className="size-4 shrink-0" aria-hidden />
@@ -251,8 +253,8 @@ function HomePage() {
       </section>
 
       {/* تواصل معنا */}
-      <section id="contact" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-20">
-        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal="">
+      <section id="contact" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-16 sm:pb-20">
+        <div className="rounded-3xl border border-border/60 bg-card p-6 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">تواصل معنا</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
           <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
