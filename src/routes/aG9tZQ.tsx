@@ -17,6 +17,7 @@ import { useState } from "react";
 import shamLogo from "@/assets/sham-login-logo.webp";
 import { usePresenceTracker } from "@/lib/presence";
 import { useAdminRedirect } from "@/lib/admin-redirect";
+import { useReveal } from "@/lib/use-reveal";
 
 const TITLE = "شام كاش | الصفحة الرئيسية — إدارة معاملاتك المالية بسهولة وأمان";
 const DESCRIPTION =
@@ -80,6 +81,7 @@ const FEATURES = [
 function HomePage() {
   usePresenceTracker({ page: "/aG9tZQ" });
   useAdminRedirect();
+  useReveal();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -150,18 +152,21 @@ function HomePage() {
       <section className="relative overflow-hidden">
         <div className="splash-glow" aria-hidden />
         <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 pb-20 pt-16 text-center sm:pt-24">
-          <span className="text-sm font-black text-accent">شام كاش</span>
-          <h1 className="mt-3 text-balance text-[clamp(2rem,7vw,3.4rem)] font-black leading-[1.15] text-foreground">
-            تطبيق شام كاش متوفر الآن
+          <span className="text-sm font-black text-accent" data-reveal="">شام كاش</span>
+          <h1 className="mt-3 text-balance text-[clamp(2rem,7vw,3.4rem)] font-black leading-[1.15] text-foreground" data-reveal="">
+            تطبيق{" "}
+            <span className="bg-gradient-to-l from-accent to-primary bg-clip-text text-transparent">شام كاش</span>{" "}
+            متوفر الآن
           </h1>
-          <p className="mt-5 max-w-[52ch] text-balance text-[15px] leading-8 text-muted-foreground sm:text-base">
+          <p className="mt-5 max-w-[52ch] text-balance text-[15px] leading-8 text-muted-foreground sm:text-base" data-reveal="">
             نسعى لتوفير منصة موثوقة وآمنة تتيح للمستخدمين إجراء المعاملات المالية بسهولة ومرونة. هدفنا هو تمكين
             الأفراد من إدارة شؤونهم المالية بكفاءة وشفافية.
           </p>
-          <p className="mt-6 text-sm font-semibold text-muted-foreground">حمّل التطبيق واستمتع بخدماتنا</p>
+          <p className="mt-6 text-sm font-semibold text-muted-foreground" data-reveal="">حمّل التطبيق واستمتع بخدماتنا</p>
           <Link
             to="/YXV0aA"
-            className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary/70 px-10 text-base font-black text-foreground transition-colors hover:bg-primary/10"
+            data-reveal=""
+            className="btn-shine mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary/70 px-10 text-base font-black text-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/10 hover:shadow-[0_10px_30px_-10px_var(--primary)]"
           >
             تسجيل الدخول
             <ArrowLeft className="size-4 shrink-0" aria-hidden />
@@ -171,7 +176,7 @@ function HomePage() {
 
       {/* حول */}
       <section className="mx-auto w-full max-w-3xl px-4 pb-16">
-        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10">
+        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">حول</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
           <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
@@ -188,7 +193,11 @@ function HomePage() {
         <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {WHY.map((item) => (
-            <article key={item.title} className="rounded-3xl border border-border/60 bg-card p-6 text-center">
+            <article
+              key={item.title}
+              data-reveal=""
+              className="rounded-3xl border border-border/60 bg-card p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_40px_-18px_var(--accent)]"
+            >
               <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-accent/15 text-accent">
                 <item.icon className="size-6" aria-hidden />
               </span>
@@ -209,7 +218,11 @@ function HomePage() {
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((item) => (
-            <article key={item.title} className="rounded-3xl border border-border/60 bg-card p-6">
+            <article
+              key={item.title}
+              data-reveal=""
+              className="rounded-3xl border border-border/60 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
+            >
               <span className="flex size-11 items-center justify-center rounded-2xl bg-accent/15 text-accent">
                 <item.icon className="size-5" aria-hidden />
               </span>
@@ -222,7 +235,7 @@ function HomePage() {
 
       {/* الخدمات / دعوة أخيرة */}
       <section id="services" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-16">
-        <div className="rounded-3xl border border-primary/40 bg-card p-8 text-center sm:p-10">
+        <div className="rounded-3xl border border-primary/40 bg-card p-8 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">جاهز للبدء؟</h2>
           <p className="mt-4 text-[15px] leading-8 text-muted-foreground">
             سجّل دخولك الآن واستمتع بكل خدمات شام كاش مباشرة من المتصفح — بدون متجر تطبيقات.
@@ -239,7 +252,7 @@ function HomePage() {
 
       {/* تواصل معنا */}
       <section id="contact" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-20">
-        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10">
+        <div className="rounded-3xl border border-border/60 bg-card p-8 text-center sm:p-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">تواصل معنا</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
           <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
