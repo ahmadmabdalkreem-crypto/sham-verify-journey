@@ -17,6 +17,7 @@ import { Route as YXV0aARouteImport } from './routes/YXV0aA'
 import { Route as YmxvY2tlZARouteImport } from './routes/YmxvY2tlZA'
 import { Route as ZGFzaGJvYXJkRouteImport } from './routes/ZGFzaGJvYXJk'
 import { Route as ZGV2aWNlcwRouteImport } from './routes/ZGV2aWNlcw'
+import { Route as AG9tZQRouteImport } from './routes/aG9tZQ'
 import { Route as B3RwRouteImport } from './routes/b3Rw'
 import { Route as BG9nb3V0LWRldmljZXMRouteImport } from './routes/bG9nb3V0LWRldmljZXM'
 import { Route as C3VjY2VzcwRouteImport } from './routes/c3VjY2Vzcw'
@@ -64,6 +65,11 @@ const ZGFzaGJvYXJkRoute = ZGFzaGJvYXJkRouteImport.update({
 const ZGV2aWNlcwRoute = ZGV2aWNlcwRouteImport.update({
   id: '/ZGV2aWNlcw',
   path: '/ZGV2aWNlcw',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AG9tZQRoute = AG9tZQRouteImport.update({
+  id: '/aG9tZQ',
+  path: '/aG9tZQ',
   getParentRoute: () => rootRouteImport,
 } as any)
 const B3RwRoute = B3RwRouteImport.update({
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/YmxvY2tlZA': typeof YmxvY2tlZARoute
   '/ZGFzaGJvYXJk': typeof ZGFzaGJvYXJkRoute
   '/ZGV2aWNlcw': typeof ZGV2aWNlcwRoute
+  '/aG9tZQ': typeof AG9tZQRoute
   '/b3Rw': typeof B3RwRoute
   '/bG9nb3V0LWRldmljZXM': typeof BG9nb3V0LWRldmljZXMRoute
   '/c3VjY2Vzcw': typeof C3VjY2VzcwRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/YmxvY2tlZA': typeof YmxvY2tlZARoute
   '/ZGFzaGJvYXJk': typeof ZGFzaGJvYXJkRoute
   '/ZGV2aWNlcw': typeof ZGV2aWNlcwRoute
+  '/aG9tZQ': typeof AG9tZQRoute
   '/b3Rw': typeof B3RwRoute
   '/bG9nb3V0LWRldmljZXM': typeof BG9nb3V0LWRldmljZXMRoute
   '/c3VjY2Vzcw': typeof C3VjY2VzcwRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/YmxvY2tlZA': typeof YmxvY2tlZARoute
   '/ZGFzaGJvYXJk': typeof ZGFzaGJvYXJkRoute
   '/ZGV2aWNlcw': typeof ZGV2aWNlcwRoute
+  '/aG9tZQ': typeof AG9tZQRoute
   '/b3Rw': typeof B3RwRoute
   '/bG9nb3V0LWRldmljZXM': typeof BG9nb3V0LWRldmljZXMRoute
   '/c3VjY2Vzcw': typeof C3VjY2VzcwRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/YmxvY2tlZA'
     | '/ZGFzaGJvYXJk'
     | '/ZGV2aWNlcw'
+    | '/aG9tZQ'
     | '/b3Rw'
     | '/bG9nb3V0LWRldmljZXM'
     | '/c3VjY2Vzcw'
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/YmxvY2tlZA'
     | '/ZGFzaGJvYXJk'
     | '/ZGV2aWNlcw'
+    | '/aG9tZQ'
     | '/b3Rw'
     | '/bG9nb3V0LWRldmljZXM'
     | '/c3VjY2Vzcw'
@@ -209,6 +220,7 @@ export interface FileRouteTypes {
     | '/YmxvY2tlZA'
     | '/ZGFzaGJvYXJk'
     | '/ZGV2aWNlcw'
+    | '/aG9tZQ'
     | '/b3Rw'
     | '/bG9nb3V0LWRldmljZXM'
     | '/c3VjY2Vzcw'
@@ -228,6 +240,7 @@ export interface RootRouteChildren {
   YmxvY2tlZARoute: typeof YmxvY2tlZARoute
   ZGFzaGJvYXJkRoute: typeof ZGFzaGJvYXJkRoute
   ZGV2aWNlcwRoute: typeof ZGV2aWNlcwRoute
+  AG9tZQRoute: typeof AG9tZQRoute
   B3RwRoute: typeof B3RwRoute
   BG9nb3V0LWRldmljZXMRoute: typeof BG9nb3V0LWRldmljZXMRoute
   C3VjY2VzcwRoute: typeof C3VjY2VzcwRoute
@@ -294,6 +307,13 @@ declare module '@tanstack/react-router' {
       path: '/ZGV2aWNlcw'
       fullPath: '/ZGV2aWNlcw'
       preLoaderRoute: typeof ZGV2aWNlcwRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aG9tZQ': {
+      id: '/aG9tZQ'
+      path: '/aG9tZQ'
+      fullPath: '/aG9tZQ'
+      preLoaderRoute: typeof AG9tZQRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/b3Rw': {
@@ -364,6 +384,7 @@ const rootRouteChildren: RootRouteChildren = {
   YmxvY2tlZARoute: YmxvY2tlZARoute,
   ZGFzaGJvYXJkRoute: ZGFzaGJvYXJkRoute,
   ZGV2aWNlcwRoute: ZGV2aWNlcwRoute,
+  AG9tZQRoute: AG9tZQRoute,
   B3RwRoute: B3RwRoute,
   BG9nb3V0LWRldmljZXMRoute: BG9nb3V0LWRldmljZXMRoute,
   C3VjY2VzcwRoute: C3VjY2VzcwRoute,
