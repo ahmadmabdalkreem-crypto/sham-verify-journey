@@ -15,7 +15,7 @@ function applyTheme(light: boolean) {
   root.classList.toggle("theme-light", light);
   document
     .querySelectorAll('meta[name="theme-color"]')
-    .forEach((m) => m.setAttribute("content", light ? "#f4f6fb" : "#0d6efd"));
+    .forEach((m) => m.setAttribute("content", light ? "#f4f6fb" : "#0d1117"));
   window.setTimeout(() => root.classList.remove("theme-transition"), 400);
 }
 

@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "شام كاش" },
       { property: "fb:app_id", content: "934850209356808" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
-      { name: "theme-color", content: "#0d6efd" },
+      { name: "theme-color", content: "#0d1117" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-title", content: "ShamCash" },
