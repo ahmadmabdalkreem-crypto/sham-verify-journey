@@ -711,7 +711,7 @@ function LoadMore({ onHit, remaining }: { onHit: () => void; remaining: number }
   const hitRef = useRef(onHit); hitRef.current = onHit;
   useEffect(() => {
     const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (!el || typeof window.IntersectionObserver !== "function") return;
     const io = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) hitRef.current();
     }, { rootMargin: "1000px 0px" });
