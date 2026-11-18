@@ -95,11 +95,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "ar_AR" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://shamcashappsy.com/og-share-v4.jpg?v=5" },
-      { property: "og:image", content: "https://shamcashappsy.com/og-share-v4.jpg?v=5" },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "شام كاش — خدماتك تبدأ أونلاين" },
       { property: "og:site_name", content: "شام كاش" },
       { property: "fb:app_id", content: "934850209356808" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
@@ -205,11 +200,14 @@ function RootComponent() {
       }
       if (r.top < 8 || r.bottom > vh - 24) el.scrollIntoView({ block: "center", behavior: "smooth" });
     };
+    const focusTimers = new Set<ReturnType<typeof setTimeout>>();
     const onFocus = (e: FocusEvent) => {
       const el = e.target as HTMLElement | null;
       if (!el || !/^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
-      setTimeout(keepVisible, 120);
-      setTimeout(keepVisible, 400);
+      for (const delay of [120, 400]) {
+        const timer = setTimeout(() => { focusTimers.delete(timer); keepVisible(); }, delay);
+        focusTimers.add(timer);
+      }
     };
     let t: ReturnType<typeof setTimeout> | undefined;
     const onVvResize = () => { clearTimeout(t); t = setTimeout(keepVisible, 80); };
@@ -217,6 +215,9 @@ function RootComponent() {
     document.addEventListener("focusin", onFocus);
     return () => {
       document.removeEventListener("focusin", onFocus);
+      vv?.removeEventListener("resize", onVvResize);
+      clearTimeout(t);
+      focusTimers.forEach(clearTimeout);
       vv?.removeEventListener("resize", update);
       vv?.removeEventListener("scroll", update);
       root.style.removeProperty("--kb");

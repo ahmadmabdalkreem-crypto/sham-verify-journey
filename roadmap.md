@@ -14,3 +14,4 @@
 - [ ] General UX improvements (scope TBD with user)
 - [ ] Apply exact colors from the uploaded login screenshot
 - [x] تحسين قراءة الرئيسية وأزرارها والتحقق من قائمة الهاتف والانتقال لتسجيل الدخول
+- [x] إصلاح تعطل حركة ظهور الأقسام وتكرار فتح الصفحات وتنظيف مؤقتات التركيز

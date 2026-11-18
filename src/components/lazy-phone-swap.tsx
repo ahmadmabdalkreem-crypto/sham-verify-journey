@@ -11,7 +11,7 @@ export function LazyPhoneSwap() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!("IntersectionObserver" in window)) { setShow(true); return; }
+    if (typeof window.IntersectionObserver !== "function") { setShow(true); return; }
     const io = new IntersectionObserver((e) => {
       if (e.some((x) => x.isIntersecting)) { setShow(true); io.disconnect(); }
     }, { rootMargin: "400px 0px" });

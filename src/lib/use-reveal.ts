@@ -6,7 +6,16 @@ import { useEffect } from "react";
  */
 export function useReveal() {
   useEffect(() => {
-    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+    if (typeof window === "undefined") return;
+    const revealAll = () => {
+      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((node) => {
+        node.dataset['reveal'] = "in";
+      });
+    };
+    if (typeof window.IntersectionObserver !== "function" || window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      revealAll();
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,6 +50,7 @@ export function useReveal() {
     return () => {
       window.clearTimeout(timer);
       observer.disconnect();
+      revealAll();
     };
   }, []);
 }

@@ -15,3 +15,5 @@
 - Exchange rate is fetched server-side in a server function with in-memory cache and a fallback value — keeps the page working if the source is down.
 
 - Capacitor wraps the published URL (server.url) instead of a static webDir build — the app is SSR, so there is no static bundle to ship.
+- Route transitions use the current pathname as their key directly; deferred key state remounts newly opened pages and repeats their effects.
+- Scroll-reveal effects must display content immediately when IntersectionObserver is not callable; animation support must never block access to page content.
