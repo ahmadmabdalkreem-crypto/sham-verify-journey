@@ -13,3 +13,4 @@
 - [ ] Login layout on small phones: no horizontal scroll, button reachable
 - [ ] General UX improvements (scope TBD with user)
 - [ ] Apply exact colors from the uploaded login screenshot
+- [x] تحسين قراءة الرئيسية وأزرارها والتحقق من قائمة الهاتف والانتقال لتسجيل الدخول

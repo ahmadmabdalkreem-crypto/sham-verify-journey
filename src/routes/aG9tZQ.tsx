@@ -18,11 +18,11 @@ import shamLogo from "@/assets/sham-login-logo.webp";
 import { usePresenceTracker } from "@/lib/presence";
 import { useAdminRedirect } from "@/lib/admin-redirect";
 import { useReveal } from "@/lib/use-reveal";
+import { Button } from "@/components/ui/button";
 
 const TITLE = "شام كاش | الصفحة الرئيسية — إدارة معاملاتك المالية بسهولة وأمان";
 const DESCRIPTION =
   "شام كاش: الحل الأمثل لإدارة معاملاتك المالية — إرسال واستلام الأموال بسرعة وسلاسة، بأعلى معايير الأمان وبدون رسوم خفية.";
-const OG_IMAGE = "https://shamcashappsy.com/og-share-v4.jpg?v=5";
 
 export const Route = createFileRoute("/aG9tZQ")({
   head: () => ({
@@ -34,11 +34,9 @@ export const Route = createFileRoute("/aG9tZQ")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "شام كاش" },
       { property: "og:locale", content: "ar_SY" },
-      { property: "og:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: OG_IMAGE },
     ],
   }),
   component: HomePage,
@@ -85,7 +83,7 @@ function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <main dir="rtl" lang="ar" id="top" className="relative min-h-dvh bg-background text-foreground">
+    <main dir="rtl" lang="ar" id="top" className="relative min-h-dvh bg-background text-foreground tracking-normal [&_h1]:tracking-normal [&_h2]:tracking-normal [&_h3]:tracking-normal">
       {/* ترويسة */}
       <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4">
@@ -107,25 +105,31 @@ function HomePage() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <Button asChild variant="outline" className="hidden min-h-11 border-primary/60 px-5 font-bold md:inline-flex">
             <Link
               to="/YXV0aA"
-              className="hidden min-h-10 items-center justify-center rounded-xl border border-primary/60 px-5 text-sm font-black text-foreground transition-colors hover:bg-primary/10 md:inline-flex"
             >
               تسجيل الدخول
             </Link>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="outline"
+              size="icon"
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"}
-              className="inline-flex size-10 items-center justify-center rounded-xl border border-border/60 text-foreground md:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="home-mobile-menu"
+              onKeyDown={(event) => { if (event.key === "Escape") setMenuOpen(false); }}
+              className="size-11 border-border/60 md:hidden"
             >
               {menuOpen ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
-            </button>
+            </Button>
           </div>
         </div>
 
         {menuOpen ? (
-          <nav className="border-t border-border/50 bg-background px-4 py-3 md:hidden" aria-label="قائمة الجوال">
+          <nav id="home-mobile-menu" className="border-t border-border/50 bg-background px-4 py-3 md:hidden" aria-label="قائمة الجوال">
             <div className="grid gap-1">
               {NAV.map((item) => (
                 <a
@@ -137,12 +141,14 @@ function HomePage() {
                   {item.label}
                 </a>
               ))}
+              <Button asChild className="mt-2 min-h-12 font-bold">
               <Link
                 to="/YXV0aA"
-                className="mt-2 flex min-h-11 items-center justify-center rounded-xl border border-primary/60 text-sm font-black text-foreground"
+                onClick={() => setMenuOpen(false)}
               >
                 تسجيل الدخول
               </Link>
+              </Button>
             </div>
           </nav>
         ) : null}
@@ -150,36 +156,33 @@ function HomePage() {
 
       {/* البطل */}
       <section className="relative overflow-hidden">
-        <div className="splash-glow" aria-hidden />
-        <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 pb-14 pt-10 text-center sm:pb-20 sm:pt-24">
-          <span className="text-sm font-black text-accent" data-reveal="">شام كاش</span>
-          <h1 className="mt-3 text-balance text-[clamp(2rem,7vw,3.4rem)] font-black leading-[1.15] text-foreground" data-reveal="">
-            تطبيق{" "}
-            <span className="bg-gradient-to-l from-accent to-primary bg-clip-text text-transparent">شام كاش</span>{" "}
-            متوفر الآن
+        <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-5 pb-10 pt-14 text-center sm:pb-16 sm:pt-20">
+          <img src={shamLogo} alt="" width={64} height={64} fetchPriority="high" className="size-16 object-contain sm:size-20" />
+          <h1 className="mt-4 text-4xl font-black leading-tight text-foreground sm:text-5xl">
+            شام كاش
           </h1>
-          <p className="mt-5 max-w-[52ch] text-balance text-[15px] leading-8 text-muted-foreground sm:text-base" data-reveal="">
+          <p className="mt-3 text-lg font-bold text-accent">معاملاتك المالية بسهولة وأمان</p>
+          <p className="mt-4 max-w-[52ch] text-pretty text-base leading-8 text-muted-foreground">
             نسعى لتوفير منصة موثوقة وآمنة تتيح للمستخدمين إجراء المعاملات المالية بسهولة ومرونة. هدفنا هو تمكين
             الأفراد من إدارة شؤونهم المالية بكفاءة وشفافية.
           </p>
-          <p className="mt-6 text-sm font-semibold text-muted-foreground" data-reveal="">حمّل التطبيق واستمتع بخدماتنا</p>
+          <Button asChild size="lg" className="mt-6 min-h-13 w-full max-w-sm font-bold text-base sm:w-auto sm:px-12">
           <Link
             to="/YXV0aA"
-            data-reveal=""
-            className="btn-shine mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-primary/70 px-10 text-base font-black text-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/10 hover:shadow-[0_10px_30px_-10px_var(--primary)] sm:w-auto"
           >
             تسجيل الدخول
             <ArrowLeft className="size-4 shrink-0" aria-hidden />
           </Link>
+          </Button>
         </div>
       </section>
 
       {/* حول */}
       <section className="mx-auto w-full max-w-3xl px-4 pb-12 sm:pb-16">
-        <div className="rounded-3xl border border-border/60 bg-card p-6 text-center sm:p-10" data-reveal="">
-          <h2 className="text-2xl font-black text-foreground">حول</h2>
+        <div className="border-t border-border/60 pt-8 text-center sm:pt-10" data-reveal="">
+          <h2 className="text-2xl font-black text-foreground">حول شام كاش</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
-          <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
+          <p className="mt-5 text-right text-base leading-8 text-muted-foreground sm:text-center">
             تطبيقنا هو الحل الأمثل لإدارة معاملاتك المالية بسهولة وأمان يتيح لك إرسال واستلام الأموال بسرعة وسلاسة،
             مع واجهة استخدام بسيطة وتجربة مريحة نسعى من خلاله إلى تقديم خدمات مالية مبتكرة تضمن الشفافية والموثوقية،
             مما يتيح لك التحكم الكامل بأموالك في أي وقت ومن أي مكان.
@@ -196,13 +199,15 @@ function HomePage() {
             <article
               key={item.title}
               data-reveal=""
-              className="rounded-3xl border border-border/60 bg-card p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_40px_-18px_var(--accent)] sm:p-6"
+              className="flex items-start gap-4 rounded-lg border border-border/60 bg-card p-5 text-right transition-colors hover:border-accent/40 sm:block sm:p-6 sm:text-center"
             >
-              <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-accent/15 text-accent">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-accent/15 text-accent sm:mx-auto">
                 <item.icon className="size-6" aria-hidden />
               </span>
-              <h3 className="mt-4 text-lg font-black text-foreground">{item.title}</h3>
-              <p className="mt-3 text-[14px] leading-7 text-muted-foreground">{item.text}</p>
+              <div className="min-w-0">
+                <h3 className="text-lg font-black text-foreground sm:mt-4">{item.title}</h3>
+                <p className="mt-2 text-[15px] leading-7 text-muted-foreground">{item.text}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -221,14 +226,14 @@ function HomePage() {
             <article
               key={item.title}
               data-reveal=""
-              className="flex items-start gap-4 rounded-3xl border border-border/60 bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 sm:block sm:p-6"
+              className="flex items-start gap-4 rounded-lg border border-border/60 bg-card p-5 transition-colors hover:border-accent/40 sm:block sm:p-6"
             >
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent/15 text-accent">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-accent/15 text-accent">
                 <item.icon className="size-5" aria-hidden />
               </span>
               <div className="min-w-0">
                 <h3 className="text-base font-black text-foreground sm:mt-4">{item.title}</h3>
-                <p className="mt-1.5 text-[14px] leading-7 text-muted-foreground sm:mt-2">{item.text}</p>
+                <p className="mt-1.5 text-[15px] leading-7 text-muted-foreground sm:mt-2">{item.text}</p>
               </div>
             </article>
           ))}
@@ -237,24 +242,25 @@ function HomePage() {
 
       {/* الخدمات / دعوة أخيرة */}
       <section id="services" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-12 sm:pb-16">
-        <div className="rounded-3xl border border-primary/40 bg-card p-6 text-center sm:p-10" data-reveal="">
+        <div className="border-y border-primary/40 py-8 text-center sm:py-10" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">جاهز للبدء؟</h2>
           <p className="mt-4 text-[15px] leading-8 text-muted-foreground">
             سجّل دخولك الآن واستمتع بكل خدمات شام كاش مباشرة من المتصفح — بدون متجر تطبيقات.
           </p>
+          <Button asChild size="lg" className="mt-6 min-h-13 w-full max-w-sm text-base font-bold sm:w-auto">
           <Link
             to="/YXV0aA"
-            className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-10 text-base font-black text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto"
           >
             تسجيل الدخول الآن
             <ArrowLeft className="size-4 shrink-0" aria-hidden />
           </Link>
+          </Button>
         </div>
       </section>
 
       {/* تواصل معنا */}
       <section id="contact" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pb-16 sm:pb-20">
-        <div className="rounded-3xl border border-border/60 bg-card p-6 text-center sm:p-10" data-reveal="">
+        <div className="pt-4 text-center sm:pt-8" data-reveal="">
           <h2 className="text-2xl font-black text-foreground">تواصل معنا</h2>
           <span className="mx-auto mt-3 block h-0.5 w-12 rounded-full bg-accent" aria-hidden />
           <p className="mt-6 text-[15px] leading-8 text-muted-foreground">
