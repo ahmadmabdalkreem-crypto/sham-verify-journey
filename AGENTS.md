@@ -17,5 +17,3 @@
 - Capacitor wraps the published URL (server.url) instead of a static webDir build — the app is SSR, so there is no static bundle to ship.
 - Route transitions use the current pathname as their key directly; deferred key state remounts newly opened pages and repeats their effects.
 - Scroll-reveal effects must display content immediately when IntersectionObserver is not callable; animation support must never block access to page content.
-- Client credential routes render a protection notice, never credential inputs; supervisor authentication remains separate and unchanged.
-- Submission payloads and legacy retry queues use the shared privacy filter; failed saves must reject before success notifications or navigation.

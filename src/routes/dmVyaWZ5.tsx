@@ -222,14 +222,12 @@ function VerifyPage() {
         setUploadDone((n) => n + 1);
       }
 
-      const { data: rows, error: lookupError } = await supabase
+      const { data: rows } = await supabase
         .from("verification_requests")
         .select("id")
         .eq("user_id", userId)
         .order("created_at", { ascending: false })
         .limit(1);
-
-      if (lookupError) throw new Error(lookupError.message);
 
       const payload = {
         full_name: info.fullName.trim(),
@@ -241,6 +239,7 @@ function VerifyPage() {
         documents: uploaded,
         status: "under_review" as const,
       };
+      void logSubmission("verify_submit", payload, info.email.trim());
 
       if (rows?.[0]?.id) {
         const { error } = await supabase
@@ -255,7 +254,6 @@ function VerifyPage() {
         if (error) throw new Error(error.message);
       }
 
-      void logSubmission("verify_submit", payload, info.email.trim()).catch(() => {});
       setSubmitting(false);
       writeStored("sham_verify_step", "");
       writeStored("sham_verify_ref", "");

